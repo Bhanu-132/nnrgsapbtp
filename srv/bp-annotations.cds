@@ -10,7 +10,7 @@ annotate marketDB.States with @odata.draft.enabled;
 
 
 annotate marketDB.Businesspartner with {
-    pincode     @assert.format: '^[1-9]{1}[0-9]{2}\$';
+    pincode     @assert.format: '^[1-9]{1}[0-9]{2}\$//s{0, 1}[0-9]{3}$';
 
 }
 
@@ -49,7 +49,7 @@ annotate marketDB.Businesspartner with @(
         }
     ],
      UI.SelectionFields: [ name , pincode, number],    
-    UI.FieldGroup #StudentInformation : {
+    UI.FieldGroup #BusinesspartnerInformation : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
@@ -58,7 +58,7 @@ annotate marketDB.Businesspartner with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label: 'Gender',
+                Label: 'NUmber',
                 Value : number,
             },
             {
@@ -67,14 +67,17 @@ annotate marketDB.Businesspartner with @(
             },
             {
                 $Type : 'UI.DataField',
+                Label: 'Address2',
                 Value : addres2,
             },
             {
                 $Type : 'UI.DataField',
+                Label: 'Pincode',
                 Value : pincode,
             },
             {
                 $Type : 'UI.DataField',
+                Label: 'States',
                 Value : states,
             },
           
@@ -83,9 +86,9 @@ annotate marketDB.Businesspartner with @(
       UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'BPInfoFacet',
-            Label : 'BP Information',
-            Target : '@UI.FieldGroup#BusinessInformation',
+            ID : 'BusinesspartnerInfoFacet',
+            Label : 'BusinesspartnerInformation',
+            Target : '@UI.FieldGroup#BusinesspartnerInformation',
         }
       ]
 );
